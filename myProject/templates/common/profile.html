@@ -1,0 +1,73 @@
+{% extends 'common/master.html' %}
+{% load static %}
+
+{% block body %}
+
+
+<div class="container mt-5">
+    <div class="resume-container text-center">
+        <h1 class="text-center">Your Resume</h1>
+        {% include 'layouts/messages.html' %}
+        
+        {% if basic_info %}
+        <a href="{% url 'edit_basic_info' basic_info.id %}" class="btn btn-outline-warning btn">Edit your Profile</a>
+        {% endif %}
+            
+        <a href="{% url 'logoutPage' %}" class="btn btn-danger btn">Log out</a>
+        <div class="header mt-4">
+            
+            <img src="/{{basic_info.picture}}" alt="Profile Picture" class="profile-picture">
+            <h1 id="fullName">{{data.first_name}} {{data.last_name}}</h1>
+            <h2 id="designation">{{basic_info.designation}}</h2>
+            
+            {% if user.user_type == "seeker" %}
+                <a href="#" class="btn btn-secondary">Applied Jobs</a>
+            {% elif user.user_type == "recruiter" %}
+                <a href="#" class="btn btn-outline-secondary">Created Jobs</a>
+                <a href="#" class="btn btn-warning">Add New Jobs</a>
+            {% endif %}
+            <a href="{% url 'my_settings' %}" class="btn btn-outline-success">Settings</a>
+            
+
+        </div><br>
+
+        
+        {% if basic_info %}
+        <div class="row">
+            <div class="col-md-12">
+                <p><strong>Email:</strong> <span id="email">{{basic_info.email}}</span></p>
+                <p><strong>Contact No:</strong> <span id="contactNo">{{basic_info.contact_no}}</span></p>
+                <p><strong>Age:</strong> <span id="age">{{basic_info.age}}</span></p>
+                <p><strong>DOB:</strong> <span id="dob">{{basic_info.dob}}</span></p>
+                <p><strong>Gender:</strong> <span id="gender">{{basic_info.gender}}</span></p>
+            </div>
+            <div class="col-md-12">
+                <div class="summary">
+                    <h4>Career Summary</h4>
+                    <p id="careerSummary">{{basic_info.career_summary}}</p>
+                </div>
+            </div>
+            <div class="btn-group-horizental mx-auto text-center mt-3" role="group" aria-label="Add Sections">
+                <a href="#" class="btn btn-primary">Add Education</a>
+                <a href="#" class="btn btn-outline-primary">Add Experience</a>
+                <a href="{% url 'add_skills' %}" class="btn btn-outline-success">Add Skills</a>
+                <a href="#" class="btn btn-outline-secondary">Add Language</a>
+                <a href="#" class="btn btn-warning">Add Interest</a>
+            </div>
+        </div>
+        {% else %}
+
+        {% include 'layouts/messages.html' %}
+        <a href="{% url 'add_basic_info' %}" class="btn btn-primary">Add Basic Information</a>
+
+        {% endif %}
+            
+    </div>
+</div>
+
+
+
+
+    
+{% endblock body %}
+    

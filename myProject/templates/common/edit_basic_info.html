@@ -1,0 +1,89 @@
+{% extends "common/master.html" %}
+
+
+
+{% block body %}
+
+
+<div class="container mt-5">
+    <h1>Create User Profile</h1>
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="first_name">First Name</label>
+            <input type="hidden" value="{{data.id}}" name="basic_info_id">
+            <input type="text" value="{{data.user.first_name}}" class="form-control" id="first_name" name="first_name" required>
+        </div>
+
+        <div class="form-group">
+            <label for="last_name">Last Name</label>
+            <input type="text" class="form-control" value="{{data.user.last_name}}" id="last_name" name="last_name" required>
+        </div>
+
+        <div class="form-group">
+            <label for="designation">Designation</label>
+            <input type="text" class="form-control" value="{{data.designation}}" id="designation" name="designation" required>
+        </div>
+
+        <div class="form-group">
+            <label for="contact_no">Contact Number</label>
+            <input type="text" class="form-control" value="{{data.contact_no}}" id="contact_no" name="contact_no" required>
+        </div>
+
+        <div class="form-group">
+            <label for="career_summary">Career Summary</label>
+            <textarea class="form-control" id="career_summary" name="career_summary" rows="4" required>{{data.career_summary}}"</textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="age">Age</label> 
+            <input type="text" class="form-control" id="age" value="{{data.age}}" name="age" required>
+        </div>
+
+        <div class="form-group">
+            <label for="dob">Date of Birth</label>
+            <input type="date" class="form-control" value="{{data.dob}}" id="dob" name="dob" required>
+        </div>
+
+        <div class="form-group">
+            <label for="picture">Profile Picture</label>
+            
+            {% if data.picture %}
+                <img style="width: 100px; height: 100px;" src="/{{data.picture}}" alt="">
+                <input type="hidden" name="picture_old" value="{{data.picture}}">
+            {% endif %}
+                
+            <input type="file" class="form-control-file" id="picture" name="picture_new">
+        </div>
+
+        <div class="form-group">
+            <label for="gender">Gender</label>
+            <select class="form-control" id="gender" name="gender" required>
+                <option value="">Select Gender</option>
+                <option value="male"
+                
+                {% if data.gender == "male" %}
+                    selected
+                {% endif %}
+                    >Male</option>
+                <option value="female"
+                {% if data.gender == "female" %}
+                selected
+                {% endif %}>Female</option>
+                <option value="other"  {% if data.gender == "other" %}
+                selected
+                {% endif %}>Other</option> 
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Update Informations</button>
+    </form>
+</div>
+
+
+
+
+
+    
+{% endblock body %}
+    

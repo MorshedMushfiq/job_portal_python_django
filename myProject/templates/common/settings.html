@@ -1,0 +1,139 @@
+{% extends 'common/master.html' %}
+
+
+
+
+
+{% block body %}
+
+
+<div class="container mx-3 mt-5 pt-5">
+    
+    <h1 class="text-center">My Settings</h1>
+    {% include 'layouts/messages.html' %}
+
+    <div class="table-section mt-4">
+            <h2>Educations</h2>
+        <table class="table table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Experience</h2>
+        <table class="table table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Skills</h2>
+        <table class="table table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>Skill Name</th>
+                    <th>Skill Level</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                {% for s in skills %}
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <a class='btn btn-warning' href="#">Edit</a>
+                        <a class='btn btn-danger' href="#">Delete</a>
+                    </td>
+                </tr>
+                {% empty %}
+
+                <tr>
+                    <td colspan="3" class='text-center'>No Skills Found</td>
+                </tr>
+
+                {% endfor %}
+                    
+
+            </tbody>
+        </table>
+
+        <h2>Languages</h2>
+        <table class="table table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+        <h2>Interests</h2>
+        <table class="table table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+
+
+
+
+</div>
+
+
+    
+{% endblock body %}
+    
+
