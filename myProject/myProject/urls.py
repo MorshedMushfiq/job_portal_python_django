@@ -29,15 +29,14 @@ urlpatterns = [
     path('contact/', contact, name='contact'),
     path('browse_jobs/', browse_jobs, name='browse_jobs'),
     path('profile/', profile, name='profile'),
-<<<<<<< HEAD
     path('my_settings/', my_settings, name='my_settings'),
     path('add_skills/', add_skills, name='add_skills'),
     path('add_basic_info/', add_basic_info, name='add_basic_info'),
     path('edit_basic_info/<int:id>', edit_basic_info, name='edit_basic_info'),
-=======
+
     path('add_skills/', add_skills, name='add_skills'),
     path('add_basic_info/', add_basic_info, name='add_basic_info'),
->>>>>>> bebbf5e11fbc004264a21760a425368cc1596dfa
+
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

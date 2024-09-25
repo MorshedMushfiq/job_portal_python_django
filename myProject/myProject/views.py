@@ -56,11 +56,8 @@ def loginPage(req):
             messages.error(req, 'Please fill all the fields')
             return render(req, 'common/login.html')
         else: 
-<<<<<<< HEAD
             user = authenticate(username=username, password=password)
-=======
             user =  authenticate(username=username, password=password)
->>>>>>> bebbf5e11fbc004264a21760a425368cc1596dfa
             if user is not None:
                 login(req, user)
                 messages.success(req, 'Login Success!')
@@ -93,7 +90,6 @@ def add_skills(req):
 
 @login_required
 def profile(req):
-<<<<<<< HEAD
     data = CustomUser.objects.get(id=req.user.id)
     
     
@@ -110,9 +106,6 @@ def profile(req):
     }
 
     return render(req, 'common/profile.html', context)
-=======
-    return render(req, 'common/profile.html')
->>>>>>> bebbf5e11fbc004264a21760a425368cc1596dfa
 
 @login_required
 def logoutPage(req):
@@ -122,11 +115,8 @@ def logoutPage(req):
 
 @login_required
 def home(req):
-<<<<<<< HEAD
     return render(req, 'common/index.html')
-=======
     return render(req,  'common/index.html')
->>>>>>> bebbf5e11fbc004264a21760a425368cc1596dfa
 
 
 @login_required
@@ -140,7 +130,6 @@ def logoutPage(req):
 def add_basic_info(req):
     
     if req.user.user_type == "seeker" or req.user.user_type == 'recruiter':
-<<<<<<< HEAD
         current_user = req.user
         if req.method == "POST":
             first_name = req.POST.get('first_name')
@@ -235,20 +224,7 @@ def edit_basic_info(req, id):
 
 def my_settings(req):
     current_user = req.user
-    return render(req,  'common/settings.html')
-
-    
-=======
-        if req.method == "POST":
-            first_name = req.POST.get('fname')
-            last_name = req.POST.get('lname')
-            designation = req.POST.get('designation')
-            
-    
-    
-    
-    return render(req, 'common/add_basic_info.html')
->>>>>>> bebbf5e11fbc004264a21760a425368cc1596dfa
+    return render(req, 'common/settings.html')
 
 
 
