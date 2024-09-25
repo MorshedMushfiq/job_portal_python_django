@@ -18,6 +18,11 @@ class CustomUser(AbstractUser):
 
 class BasicInfo(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, null=True)
+<<<<<<< HEAD
+=======
+    first_name =  models.CharField(max_length=50, null=True)
+    last_name = models.CharField(max_length=50, null=True)
+>>>>>>> bebbf5e11fbc004264a21760a425368cc1596dfa
     email =  models.EmailField(max_length=100, null=True)
     designation = models.CharField(max_length=50, null=True)
     contact_no = models.CharField(max_length=50, null=True)
@@ -36,6 +41,7 @@ class BasicInfo(models.Model):
         return f"{self.user.username} - {self.designation}"
     
 
+<<<<<<< HEAD
 class FieldOfStudyModel(models.Model):
     name =  models.CharField(max_length=100, null=True)
     description = models.TextField(null=True)
@@ -115,4 +121,8 @@ class IntermediateSkillModel(models.Model):
 
     def __str__(self):
         return f"{self.skill_name}"    
+=======
+
+
+>>>>>>> bebbf5e11fbc004264a21760a425368cc1596dfa
 

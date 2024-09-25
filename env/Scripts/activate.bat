@@ -8,7 +8,11 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
+<<<<<<< HEAD
 set VIRTUAL_ENV=E:\job_portal_python_django-main\env
+=======
+set VIRTUAL_ENV=E:\job_portal_20_morshed\env
+>>>>>>> bebbf5e11fbc004264a21760a425368cc1596dfa
 
 if not defined PROMPT set PROMPT=$P$G
 
