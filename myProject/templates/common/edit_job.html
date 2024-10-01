@@ -1,0 +1,84 @@
+{% extends 'common/master.html' %}
+
+
+{% block body %}
+
+
+
+
+<div class="container mt-5 py-4">
+    <h2 class="mb-4">Post a Job</h2>
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="jobTitle" class="form-label">Job Title</label>
+            <input type="text" class="form-control" name="job_title" value="{{job.job_title}}" id="jobTitle" maxlength="50" required>
+            <input type="hidden" class="form-control" name="job_id" value="{{job.id}}" id="jobTitle" maxlength="50" required>
+        </div>
+        <div class="mb-3">
+            <label for="jobDescription" class="form-label">Job Description</label>
+            <textarea class="form-control" id="jobDescription" rows="4" name="job_description" required>{{job.job_description}}</textarea>
+        </div>
+        <div class="mb-3">
+            <label for="jobLocation" class="form-label">Job Location</label>
+            <input type="text" name="job_location" class="form-control" value="{{job.job_location}}" id="jobLocation" maxlength="100" required>
+        </div>
+        <div class="mb-3">
+            <label for="companyName" class="form-label">Company Name</label>
+            <input type="text" name="company_name" class="form-control" value="{{job.company_name}}" id="companyName" maxlength="50" required>
+        </div>
+        <div class="mb-3">
+            <label for="companyLogo" class="form-label">Company Logo</label>
+            <input type="hidden" value="{{job.company_logo}}" name="company_logo_old" class="form-control" id="companyLogo">
+            
+            {% if job.company_logo %}
+                <img src="/{{job.company_logo}}" class="img-fluid" alt="">
+            {% endif %}
+                
+            <input type="file" name="company_logo_new" class="form-control" id="companyLogo">
+
+        </div>
+        <div class="mb-3">
+            <label for="jobType" class="form-label">Job Type</label>
+            <select class="form-select" name="job_type" id="jobType" required>
+                <option value="" disabled selected>Select Job Type</option>
+                <option value="full_time"
+                
+                {% if job.job_type == "full_time" %}
+                    selected
+                {% endif %}
+                    
+                >Full-time</option>
+                <option value="part_time"
+                {% if job.job_type == "part_time" %}
+                    selected
+                {% endif %}>Part-time</option>
+                <option value="internship"
+                {% if job.job_type == "internship" %}
+                    selected
+                {% endif %}
+
+                >Internship</option>
+                <option value="freelance"
+                {% if job.job_type == "freelance" %}
+                    selected
+                {% endif %}
+                
+                >Freelance</option>                
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="salary" class="form-label">Salary</label>
+            <input type="number" name="salary" class="form-control" value="{{job.salary}}" id="salary" required>
+        </div>
+        <div class="mb-3">
+            <label for="applicationDeadline" class="form-label">Application Deadline</label>
+            <input type="date" name="application_deadline" class="form-control" value="{{job.application_deadline|date:'Y-m-d'}}" id="applicationDeadline" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Update Job</button>
+    </form>
+</div>
+
+
+{% endblock body %}
+    

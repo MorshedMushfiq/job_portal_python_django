@@ -14,47 +14,94 @@
 
     <div class="table-section mt-4">
             <h2>Educations</h2>
-        <table class="table table-bordered">
+        <table class="table table-bordered text-center">
             <thead class="table-dark">
                 <tr>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
+                    <th>Institution Name</th>
+                    <th>Degree</th>
+                    <th>Field of Study</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
+                
+                {% for e in education %}
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{e.institution_name}}</td>
+                    <td>{{e.degree}}</td>
+                    <td>{{e.field_of_study}}</td>
+                    <td>{{e.start_date}}</td>
+                    <td>{{e.end_date}}</td>
+                    <td>
+                        <a class='btn btn-warning' href="{% url 'edit_education' e.id %}">Edit</a>
+                        <a class='btn btn-danger' href="{% url 'delete_education' e.id %}">Delete</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6" class='text-center'>No Educations Found</td>
+                </tr>
+
+                {% endfor %}
+                    
+                <tr>
+                   <td colspan="6">
+                    {% if user.user_type == "recruiter" %}
+                    <a class='btn btn-secondary mb-2 me-2' href="{% url 'field_of_study' %}">Add Field of Study</a>
+                    {% endif %}
+                    {% if user.user_type == "recruiter" %}
+                    <a class='btn btn-outline-warning mb-2 me-2' href="{% url 'degree' %}">Add Degree</a>
+                    {% endif %}
+            
+                    {% if user.user_type == "recruiter" %}
+                    <a class='btn btn-outline-success mb-2 me-2' href="{% url 'institute_add' %}">Add Institute</a>
+                    {% endif %}
+                   </td>
                 </tr>
             </tbody>
         </table>
 
+
         <h2>Experience</h2>
-        <table class="table table-bordered">
+        <table class="table table-bordered text-center">
             <thead class="table-dark">
                 <tr>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
+                    <th>Job title</th>
+                    <th>Description</th>
+                    <th>Company Name</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
+                
+                {% for ex in experience %}
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{ex.job_title}}</td>
+                    <td>{{ex.description}}</td>
+                    <td>{{ex.company_name}}</td>
+                    <td>{{ex.start_date}}</td>
+                    <td>{{ex.end_date}}</td>
+                    <td>
+                        <a class='btn btn-warning' href="{% url 'edit_experience' ex.id %}">Edit</a>
+                        <a class='btn btn-danger' href="{% url 'delete_experience' ex.id %}">Delete</a>
+                    </td>
                 </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6" class='text-center'>No Experience Found</td>
+                </tr>
+
+                {% endfor %}
             </tbody>
         </table>
 
         <h2>Skills</h2>
-        <table class="table table-bordered">
+            
+        <table class="table table-bordered text-center">
             <thead class="table-dark">
                 <tr>
                     <th>Skill Name</th>
@@ -66,11 +113,11 @@
                 
                 {% for s in skills %}
                 <tr>
-                    <td></td>
-                    <td></td>
+                    <td>{{s.skill_name}}</td>
+                    <td>{{s.skill_level}}</td>
                     <td>
-                        <a class='btn btn-warning' href="#">Edit</a>
-                        <a class='btn btn-danger' href="#">Delete</a>
+                        <a class='btn btn-warning' href="{% url 'edit_skill' s.id %}">Edit</a>
+                        <a class='btn btn-danger' href="{% url 'delete_skill' s.id %}">Delete</a>
                     </td>
                 </tr>
                 {% empty %}
@@ -80,51 +127,78 @@
                 </tr>
 
                 {% endfor %}
-                    
+                
+                <tr>
+                    <td colspan="3">
+                        {% if user.user_type == "recruiter" %}
+                        <a class='btn btn-primary' href="{% url 'admin_add_skill' %}">Add Skill Names</a>
+                        {% endif %}
+                
+                    </td>
+                </tr>
+
 
             </tbody>
-        </table>
+        </table> 
 
         <h2>Languages</h2>
-        <table class="table table-bordered">
+        <table class="table table-bordered text-center">
             <thead class="table-dark">
                 <tr>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
+                    <th>Language Name</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
+                
+                {% for l in language %}
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{l.language_name}}</td>
+                    <td>
+                        <a class='btn btn-warning' href="{% url 'edit_language' l.id %}">Edit</a>
+                        <a class='btn btn-danger' href="{% url 'delete_language' l.id %}">Delete</a>
+                    </td>
                 </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6" class='text-center'>No Lanuguage Found</td>
+                </tr>
+
+                {% endfor %}
             </tbody>
         </table>
         <h2>Interests</h2>
-        <table class="table table-bordered">
+        <table class="table table-bordered text-center">
             <thead class="table-dark">
                 <tr>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
+                    <th>Interest Name</th>
+                    <th>Description</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
+                
+                {% for i in interest %}
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{i.interest_name}}</td>
+                    <td>{{i.description}}</td>
+                    <td>
+                        <a class='btn btn-warning' href="{% url 'edit_interest' i.id %}">Edit</a>
+                        <a class='btn btn-danger' href="{% url 'delete_interest' i.id %}">Delete</a>
+                    </td>
                 </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6" class='text-center'>No Interest Found</td>
+                </tr>
+
+                {% endfor %}
             </tbody>
         </table>
 
-
+        <div class="d-flex justify-content-end">
+            <a class='btn btn-success my-2 text-end' href="{% url 'profile' %}">Go to Profile</a>
+        </div>
     </div>
 
 

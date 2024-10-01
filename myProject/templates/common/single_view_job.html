@@ -1,0 +1,79 @@
+{% extends "common/master.html" %}
+
+
+{% block body %}
+
+<div class="container mt-5 py-4">
+    <h2 class="mb-4">About {{data.job_title}} Job</h2>
+    {% include 'layouts/messages.html' %}
+    
+    
+
+    <div class="row">
+        <div class="col-md-12 mb-4">
+            <div class="card">
+                <img src="/{{data.company_logo}}" class="card-img-top" alt="Company Logo">
+                <div class="card-body">
+                    <h5 class="card-title">{{data.job_title}}</h5>
+                    <p class="card-text">{{data.job_description}}</p>
+                    <p class="card-text"><strong>Location:</strong>{{data.job_location}}</p>
+                    <p class="card-text"><strong>Type:</strong>{{data.job_type}}</p>
+                    <p class="card-text"><strong>Salary:</strong> {{data.salary}} BDT</p>
+                    <p class="card-text"><strong>Application Deadline:</strong> {{data.application_deadline|date:'d-M-Y'}}</p>
+                    
+                    {% if already_applied %}
+                        <h2 class="alert alert-danger">You have already Applied for this job.</h2>
+                    {% else %}
+                    <h2 class="card-title text-center text-success">You can apply from here..</h2>
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="jobTitle" class="form-label">Applicant Name</label>
+                            <input type="text" class="form-control" name="applicant_name" id="jobTitle" maxlength="50" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="jobLocation" class="form-label">Applicant Email</label>
+                            <input type="email" name="applicant_email" class="form-control" id="jobLocation" maxlength="100" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="companyName" class="form-label">Applicant Resume</label>
+                            <input type="file" name="applicant_resume" class="form-control" id="companyName" required>
+                        </div>    
+                        <div class="mb-3">
+                            <label for="jobDescription" class="form-label">Cover Letter</label>
+                            <textarea class="form-control" id="jobDescription" rows="4" name="applicant_cover_letter" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-success">Apply Now</button>
+                    </form>
+
+                        
+                    {% endif %}
+                        
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Repeat the card for other job listings -->
+    </div>
+
+
+
+        
+</div>
+
+
+
+
+
+
+    
+{% endblock body %}
+    
+
+
+
+
+
+

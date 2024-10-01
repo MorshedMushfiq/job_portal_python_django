@@ -1,0 +1,52 @@
+{% extends "common/master.html" %}
+
+
+{% block body %}
+
+<div class="container mt-5 py-4">
+    <h2 class="mb-4">Job Listings</h2>
+    {% include 'layouts/messages.html' %}
+    
+    
+
+    <div class="row">
+        {% for job in jobs %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="/{{job.company_logo}}" class="card-img-top" alt="Company Logo">
+                <div class="card-body">
+                    <h5 class="card-title">{{job.job_title}}</h5>
+                    <p class="card-text">{{job.job_description}}</p>
+                    <p class="card-text"><strong>Location:</strong>{{job.job_location}}</p>
+                    <p class="card-text"><strong>Type:</strong>{{job.job_type}}</p>
+                    <p class="card-text"><strong>Salary:</strong> {{job.salary}} BDT</p>
+                    <p class="card-text"><strong>Application Deadline:</strong> {{job.application_deadline|date:'d-M-Y'}}</p>
+                    <a href="{% url 'edit_job' job.id %}" class="btn btn-primary">Edit</a>
+                    <a href="{% url 'delete_job' job.id %}" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        </div>
+                
+        {% endfor %}
+        <!-- Repeat the card for other job listings -->
+    </div>
+
+
+
+        
+</div>
+
+
+
+
+
+
+    
+{% endblock body %}
+    
+
+
+
+
+
+

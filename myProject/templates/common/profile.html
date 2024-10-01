@@ -4,7 +4,7 @@
 {% block body %}
 
 
-<<<<<<< HEAD
+
 <div class="container mt-5">
     <div class="resume-container text-center">
         <h1 class="text-center">Your Resume</h1>
@@ -21,13 +21,14 @@
             <h1 id="fullName">{{data.first_name}} {{data.last_name}}</h1>
             <h2 id="designation">{{basic_info.designation}}</h2>
             
-            {% if user.user_type == "seeker" %}
+            {% if request.user.user_type == "seeker" %}
                 <a href="#" class="btn btn-secondary">Applied Jobs</a>
-            {% elif user.user_type == "recruiter" %}
-                <a href="#" class="btn btn-outline-secondary">Created Jobs</a>
-                <a href="#" class="btn btn-warning">Add New Jobs</a>
+            {% elif request.user.user_type == "recruiter" %}
+                <a href="{% url 'created_jobs_by_recruiter' %}" class="btn btn-outline-secondary">Created Jobs</a>
+                <a href="{% url 'add_job' %}" class="btn btn-warning">Add New Jobs</a>
             {% endif %}
             <a href="{% url 'my_settings' %}" class="btn btn-outline-success">Settings</a>
+            <a href="{% url 'change_password' %}" class="btn btn-secondary">Change Password</a>
             
 
         </div><br>
@@ -48,58 +49,21 @@
                     <p id="careerSummary">{{basic_info.career_summary}}</p>
                 </div>
             </div>
-            <div class="btn-group-horizental mx-auto text-center mt-3" role="group" aria-label="Add Sections">
-=======
-
-
-
-<div class="container mt-5">
-    <div class="resume-container">
-        <h1 class="text-center">Your Resume</h1>
-        <a href="{% url 'logoutPage' %}" class="btn btn-danger">Log out</a>
-        <div class="header">
-            
-            <img src="your-image-url.jpg" alt="Profile Picture" class="profile-picture">
-            <h1 id="fullName">First Last</h1>
-            <h2 id="designation">Designation</h2>
-            <a href="#" class="btn btn-secondary">Applied Jobs</a>
-            <a href="#" class="btn btn-outline-secondary">Created Jobs</a>
-            <a href="#" class="btn btn-warning">Add New Jobs</a>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6">
-                <p><strong>Email:</strong> <span id="email">example@example.com</span></p>
-                <p><strong>Contact No:</strong> <span id="contactNo">+123456789</span></p>
-                <p><strong>Age:</strong> <span id="age">25</span></p>
-                <p><strong>DOB:</strong> <span id="dob">YYYY-MM-DD</span></p>
-                <p><strong>Gender:</strong> <span id="gender">Male</span></p>
-            </div>
-            <div class="col-md-6">
-                <div class="summary">
-                    <h4>Career Summary</h4>
-                    <p id="careerSummary">A brief overview of professional experience, skills, and achievements.</p>
-                </div>
-            </div>
+           
             <div class="btn-group-horizental mt-3" role="group" aria-label="Add Sections">
->>>>>>> bebbf5e11fbc004264a21760a425368cc1596dfa
-                <a href="#" class="btn btn-primary">Add Education</a>
-                <a href="#" class="btn btn-outline-primary">Add Experience</a>
+                <a href="{% url 'add_education' %}" class="btn btn-primary">Add Education</a>
+                <a href="{% url 'add_experience' %}" class="btn btn-outline-primary">Add Experience</a>
                 <a href="{% url 'add_skills' %}" class="btn btn-outline-success">Add Skills</a>
-                <a href="#" class="btn btn-outline-secondary">Add Language</a>
-                <a href="#" class="btn btn-warning">Add Interest</a>
+                <a href="{% url 'add_language' %}" class="btn btn-outline-secondary">Add Language</a>
+                <a href="{% url 'add_interest' %}" class="btn btn-warning">Add Interest</a>
             </div>
         </div>
-<<<<<<< HEAD
         {% else %}
 
         {% include 'layouts/messages.html' %}
         <a href="{% url 'add_basic_info' %}" class="btn btn-primary">Add Basic Information</a>
 
         {% endif %}
-            
-=======
->>>>>>> bebbf5e11fbc004264a21760a425368cc1596dfa
     </div>
 </div>
 

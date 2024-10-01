@@ -1,0 +1,69 @@
+{% extends 'common/master.html' %}
+{% load static %}
+
+
+{% block body %}
+
+
+
+
+
+
+    <!-- job_listing_area_start  -->
+    <div class="job_listing_area mt-5 mb-2 py-4">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="section_title">
+                        <h3>You are searching for {{query}}</h3>
+                        {% include 'layouts/messages.html' %}
+                    </div>
+                </div>
+            </div>
+            <div class="job_lists">
+                <div class="row">
+                    
+                    {% for j in job %}
+                    <div class="col-lg-12 col-md-12">
+                        <div class="single_jobs white-bg d-flex justify-content-between">
+                            <div class="jobs_left d-flex align-items-center">
+                                <div class="thumb">
+                                    <img class="img-fluid" src="/{{j.company_logo}}" alt="">
+                                </div>
+                                <div class="jobs_conetent">
+                                    <a href="job_details.html"><h4>{{j.job_title}}</h4></a>
+                                    <div class="links_locat d-flex align-items-center">
+                                        <div class="location">
+                                            <p> <i class="fa fa-map-marker"></i> {{j.job_location}}</p>
+                                        </div>
+                                        <div class="location">
+                                            <p> <i class="fa fa-clock-o"></i> {{j.job_type}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="jobs_right">
+                                <div class="apply_now">
+                                    <a class="heart_mark" href="#"> <i class="ti-heart"></i> </a>
+                                    <a href="{% url 'single_view_job' j.id %}" class="boxed-btn3">Apply Now</a>
+                                </div>
+                                <div class="date">
+                                    <p>Date line: {{j.application_deadline}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                        
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- job_listing_area_end  -->
+
+
+
+    
+{% endblock body %}
+    
