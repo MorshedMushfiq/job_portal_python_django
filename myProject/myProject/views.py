@@ -126,13 +126,17 @@ def add_skills(req):
                 return redirect('my_settings')
     return render(req, 'common/add_skill.html', context)
 
+
+#for delete skill
+@login_required
 def deleteSkill(req, id):
     data = SkillModel.objects.get(id=id)
     data.delete()
     messages.success(req, "Skill Deleted Success")
     return redirect('my_settings')
 
-
+# edit skill
+@login_required
 def edit_skills(req, id):
     current_user = req.user
     if req.user.user_type == "recruiter" or req.user.user_type == "seeker":
@@ -171,8 +175,7 @@ def edit_skills(req, id):
 
 
 # admin add skill  functionality
-
-
+@login_required
 def admin_add_skill(req):
     if req.method == 'POST':
         skill_name = req.POST.get('skill_name')
@@ -208,7 +211,6 @@ def profile(req):
     return render(req, 'common/profile.html', context)
 
 # logout  functionality
-
 @login_required
 def logoutPage(req):
     logout(req)
@@ -259,6 +261,7 @@ def add_basic_info(req):
 
 
 # edit and update basic info functionality
+@login_required
 def edit_basic_info(req, id):
     current_user = req.user
     try: 
@@ -316,6 +319,7 @@ def edit_basic_info(req, id):
     return render(req, 'common/edit_basic_info.html', context)
 
 # my settings functionality
+@login_required
 def my_settings(req):
     current_user = req.user
     skills = SkillModel.objects.all()
@@ -335,6 +339,7 @@ def my_settings(req):
     return render(req, 'common/settings.html', context)
 
 # field of study  functionality
+@login_required
 def  field_of_study(req):
     current_user = req.user
     if current_user.user_type == 'recruiter':
@@ -357,6 +362,7 @@ def  field_of_study(req):
 
 
 # degree functionlity
+@login_required
 def degree(req):
     current_user = req.user
     if current_user.user_type == 'recruiter':
@@ -377,6 +383,7 @@ def degree(req):
 
 
 # institute functionailty
+@login_required
 def institute_add(req):
     if req.user.user_type == "recruiter":
         current_user = req.user
@@ -414,7 +421,7 @@ def institute_add(req):
     return render(req, "common/add_institute.html")
 
 # add education functionality
-
+@login_required
 def add_education(req):
     if req.user.user_type == "recruiter":
         degree = DegreeModel.objects.all()
@@ -451,13 +458,15 @@ def add_education(req):
     }
 
     return render(req, "common/add_education.html", context)
-
+# delete education
+@login_required
 def deleteEducation(req, id):
     data = EducationModel.objects.get(id=id)
     data.delete()
     messages.success(req, "Education Deleted Success")
     return redirect('my_settings')
-
+# edit education
+@login_required
 def editEducation(req, id):
     if req.user.user_type == "recruiter":
         degree = DegreeModel.objects.all()
@@ -499,8 +508,8 @@ def editEducation(req, id):
 
     return render(req, "common/edit_education.html", context)
 
-
-
+# add experience
+@login_required
 def addExperience(request):
     if request.user.user_type == "recruiter":
         current_user = request.user
@@ -530,7 +539,8 @@ def addExperience(request):
             return render(request, "common/add_experience.html") 
 
     return render(request, "common/add_experience.html")
-
+# delete experience 
+@login_required
 def deleteExperience(req, id):
     data = ExperienceModel.objects.get(id=id)
     data.delete()
@@ -538,7 +548,8 @@ def deleteExperience(req, id):
     return redirect('my_settings')
 
 
-
+# edit experience 
+@login_required
 def editExperience(request, id):
     if request.user.user_type == "recruiter":
         current_user = request.user
@@ -575,16 +586,8 @@ def editExperience(request, id):
     }     
 
     return render(request, "common/edit_experience.html", context)
-
-
-
-
-
-
-
-
-
-
+# add language 
+@login_required
 def addLanguage(request):
 
     if request.user.user_type == "recruiter":
@@ -612,6 +615,8 @@ def addLanguage(request):
 
     return render(request, "common/add_language.html", context)
 
+# delete language
+@login_required
 def deleteLanguage(req, id):
     data = LanguageModel.objects.get(id=id)
     data.delete()
@@ -619,6 +624,8 @@ def deleteLanguage(req, id):
     return redirect('my_settings')
 
 
+# edit language
+@login_required
 def editLanguage(req, id):
     current_user = req.user
     try: 
@@ -645,16 +652,8 @@ def editLanguage(req, id):
     }
     return render(req, "common/edit_language.html", context)
 
-
-
-
-
-
-
-
-
-
-
+# add interest
+@login_required
 def addInterest(request):
     if request.user.user_type == "recruiter":
         current_user = request.user
@@ -676,18 +675,18 @@ def addInterest(request):
         messages.error(request, "Interest is already exists")
         return render(request, "common/add_interest.html") 
 
-
-
     return render(request, "common/add_interest.html")
 
-
-
+# delete interest
+@login_required
 def deleteInterest(req, id):
     data =  InterestModel.objects.get(id=id)
     data.delete()
     messages.success(req, "Interest Deleted Success")
     return redirect('my_settings')
 
+# edit interest
+@login_required
 def editInterest(req, id):
     current_user = req.user
     try: 
@@ -717,8 +716,8 @@ def editInterest(req, id):
     }
 
     return render(req, "common/edit_interest.html", context)
-
-
+# change password
+@login_required
 def changePassword(req):
     current_user = req.user
     if req.method == "POST":
@@ -741,7 +740,8 @@ def changePassword(req):
 
     return render(req,  "common/change_password.html")
 
-
+# add job
+@login_required
 def add_job(req):
     if req.user.user_type == "recruiter":
         current_user = req.user
@@ -772,16 +772,16 @@ def add_job(req):
             return redirect("created_jobs_by_recruiter")
         
     return render(req, "common/add_job.html")
-
-
+# for recruiters job viewing fro every recruiters.
+@login_required
 def recruiter_jobs_view(req):
     if req.user.user_type == "recruiter":
         current_user = req.user
         jobs = JobModel.objects.filter(user=current_user)
         
     return render(req, "common/createdJobsByRecruiter.html", {"jobs": jobs})
-
-
+# delete job
+@login_required
 def delete_job(req, id):
     if req.user.user_type == "recruiter":
         current_user = req.user
@@ -789,7 +789,9 @@ def delete_job(req, id):
         job.delete()
         messages.success(req, "Job Deleted Successfully")
         return redirect('created_jobs_by_recruiter')
-    
+
+# edit job
+@login_required
 def edit_job(req, id):
     if req.user.user_type == "recruiter":
         current_user = req.user
@@ -828,13 +830,14 @@ def edit_job(req, id):
             return redirect("created_jobs_by_recruiter")
     
 
-
-
     context = {
             "job":job
     }
     return render(req, "common/edit_job.html", context)
 
+
+# single view job and apply now functionality
+@login_required
 def single_view_job(req, id):
     single_job = JobModel.objects.get(id=id)
     current_user = req.user
@@ -868,7 +871,7 @@ def single_view_job(req, id):
         "already_applied":already_applied
     }
     return render(req, "common/single_view_job.html", context)
-
+# searvh job
 def search_job(req):
     query = req.GET.get('search')
     if query:
